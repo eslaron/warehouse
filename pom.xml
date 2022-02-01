@@ -74,6 +74,13 @@
 			<artifactId>mariadb</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- CSV READER dependency		-->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.5.2</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
