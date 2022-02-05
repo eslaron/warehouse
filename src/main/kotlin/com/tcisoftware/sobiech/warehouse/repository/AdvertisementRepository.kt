@@ -16,8 +16,8 @@ interface AdvertisementRepository {
     fun saveAll(rows: List<CsvRow>)
     fun countAllRows(): Long
     fun getTotalClicks(dataSource: String, dateRange: DateRange): Long
-    fun getCTR(dataSource: String, campaign: String): Int
-    fun getImpressionsOverTime(date: String): Int
+    fun getAdsByDataSourceAndCampaign(dataSource: String, campaign: String): List<AdvertisementEntity>
+    fun getAdsByDaily(date: String): List<AdvertisementEntity>
 }
 
 @Component
@@ -36,13 +36,10 @@ class DefaultAdvertisementRepository(private val jpaRepository: JpaAdvertisement
             parseDate(dateRange.endDate)
         )
 
-    override fun getCTR(dataSource: String, campaign: String): Int {
-        val ads = jpaRepository.findByDataSourceAndCampaign(dataSource, campaign)
-        return ads.sumOf { it.clicks } / ads.sumOf { it.impressions }
-    }
+    override fun getAdsByDataSourceAndCampaign(dataSource: String, campaign: String) =
+        jpaRepository.findByDataSourceAndCampaign(dataSource, campaign)
 
-    override fun getImpressionsOverTime(date: String) =
-        jpaRepository.findByDaily(parseDate(date)).sumOf { it.impressions }
+    override fun getAdsByDaily(date: String) = jpaRepository.findByDaily(parseDate(date))
 }
 
 @Repository
