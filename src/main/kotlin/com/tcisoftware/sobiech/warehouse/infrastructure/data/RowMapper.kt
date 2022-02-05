@@ -1,7 +1,7 @@
 package com.tcisoftware.sobiech.warehouse.infrastructure.data
 
+import com.tcisoftware.sobiech.warehouse.infrastructure.date.DateParser.parseDate
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 internal object RowMapper {
 
@@ -14,11 +14,6 @@ internal object RowMapper {
                 impressions = it[4].toInt()
             )
         }
-    }
-
-    private fun parseDate(date: String): LocalDate {
-        val dateFormat = DateTimeFormatter.ofPattern("MM/dd/yy")
-        return LocalDate.parse(date, dateFormat)
     }
 }
 

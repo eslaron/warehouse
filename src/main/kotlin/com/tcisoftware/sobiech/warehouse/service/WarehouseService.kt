@@ -1,5 +1,6 @@
 package com.tcisoftware.sobiech.warehouse.service
 
+import com.tcisoftware.sobiech.warehouse.repository.AdvertisementRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 
@@ -12,11 +13,10 @@ interface WarehouseService {
 data class DateRange(val startDate: String, val endDate: String)
 
 @Service
-class DefaultWarehouseService : WarehouseService {
+class DefaultWarehouseService(private val repository: AdvertisementRepository) : WarehouseService {
 
-    override fun getTotalClicks(datasource: String, dateRange: DateRange): Long {
-        TODO("Not yet implemented")
-    }
+    override fun getTotalClicks(datasource: String, dateRange: DateRange) =
+        repository.getTotalClicks(datasource, dateRange)
 
     override fun getCTR(datasource: String, campaign: String): Int {
         TODO("Not yet implemented")

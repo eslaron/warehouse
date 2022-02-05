@@ -14,7 +14,7 @@ class WarehouseController(
     fun getTotalClicks(
         @RequestParam datasource: String,
         @RequestParam startDate: String,
-        @RequestParam  endDate: String
+        @RequestParam endDate: String
     ) {
         warehouseService.getTotalClicks(datasource, DateRange(startDate, endDate))
     }
