@@ -3,10 +3,12 @@ package com.tcisoftware.sobiech.warehouse.rest
 import com.tcisoftware.sobiech.warehouse.service.DateRange
 import com.tcisoftware.sobiech.warehouse.service.WarehouseService
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("/ads")
+@RestController
+@RequestMapping("/v1/ads")
 class WarehouseController(
     private val warehouseService: WarehouseService
 ) {

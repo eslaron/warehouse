@@ -2,7 +2,6 @@ package com.tcisoftware.sobiech.warehouse.service
 
 import com.tcisoftware.sobiech.warehouse.repository.AdvertisementRepository
 import org.springframework.stereotype.Service
-import java.time.LocalDate
 
 interface WarehouseService {
     fun getTotalClicks(datasource: String, dateRange: DateRange): Long
@@ -18,11 +17,9 @@ class DefaultWarehouseService(private val repository: AdvertisementRepository) :
     override fun getTotalClicks(datasource: String, dateRange: DateRange) =
         repository.getTotalClicks(datasource, dateRange)
 
-    override fun getCTR(datasource: String, campaign: String): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getCTR(datasource: String, campaign: String): Int =
+        repository.getCTR(datasource, campaign)
 
-    override fun getImpressionsOverTime(date: String): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getImpressionsOverTime(date: String): Int =
+        repository.getImpressionsOverTime(date)
 }
