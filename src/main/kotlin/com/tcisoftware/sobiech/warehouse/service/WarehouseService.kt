@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 
 interface WarehouseService {
     fun getTotalClicks(dataSource: String, dateRange: DateRange): Long
-    fun getCTR(dataSource: String, campaign: String): Int
+    fun getCTR(dataSource: String, campaign: String): Double
     fun getImpressionsOverTime(date: String): Int
 }
 
@@ -17,9 +17,9 @@ class DefaultWarehouseService(private val repository: AdvertisementRepository) :
     override fun getTotalClicks(dataSource: String, dateRange: DateRange) =
         repository.getTotalClicks(dataSource, dateRange)
 
-    override fun getCTR(dataSource: String, campaign: String): Int {
+    override fun getCTR(dataSource: String, campaign: String): Double {
             val ads = repository.getAdsByDataSourceAndCampaign(dataSource, campaign)
-            return ads.sumOf { it.clicks } / ads.sumOf { it.impressions }
+            return ads.sumOf { it.clicks }.toDouble() / ads.sumOf { it.impressions }.toDouble()
     }
 
     override fun getImpressionsOverTime(date: String): Int =
