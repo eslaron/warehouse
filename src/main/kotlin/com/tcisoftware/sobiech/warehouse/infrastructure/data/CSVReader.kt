@@ -25,7 +25,7 @@ class DefaultCSVReader(
         return readAllLines(reader, skipRows).readAll()
     }
 
-    private fun readAllLines(reader: InputStreamReader, skipRows: Int) : CSVReader =
+    private fun readAllLines(reader: InputStreamReader, skipRows: Int) =
          CSVReaderBuilder(reader)
         .withSkipLines(skipRows)
         .withCSVParser(parser)

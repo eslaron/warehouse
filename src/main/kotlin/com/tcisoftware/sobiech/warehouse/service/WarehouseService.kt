@@ -17,10 +17,10 @@ class DefaultWarehouseService(private val repository: AdvertisementRepository) :
     override fun getTotalClicks(dataSource: String, dateRange: DateRange) =
         repository.getTotalClicks(dataSource, dateRange)
 
-    override fun getCTR(dataSource: String, campaign: String): Double {
-            val ads = repository.getAdsByDataSourceAndCampaign(dataSource, campaign)
-            return ads.sumOf { it.clicks }.toDouble() / ads.sumOf { it.impressions }.toDouble()
-    }
+    override fun getCTR(dataSource: String, campaign: String) =
+        with (repository.getAdsByDataSourceAndCampaign(dataSource, campaign)) {
+            sumOf { it.clicks }.toDouble() / sumOf { it.impressions }.toDouble()
+        }
 
     override fun getImpressionsOverTime(date: String): Int =
         repository.getAdsByDaily(date).sumOf { it.impressions }

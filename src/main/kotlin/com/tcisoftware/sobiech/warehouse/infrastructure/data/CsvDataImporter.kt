@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 
 @Component
 @ConditionalOnProperty("data.import.enabled")
-private class CsvDataImporter(
+class CsvDataImporter(
     csvReader: WarehouseCSVReader,
     advertisementRepository: AdvertisementRepository
 ) {
