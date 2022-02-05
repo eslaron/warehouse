@@ -21,9 +21,8 @@ class WarehouseController(
         @RequestParam endDate: String
     ) = ResponseEntity.ok(warehouseService.getTotalClicks(datasource, DateRange(startDate, endDate)))
 
-
     @GetMapping("/ctr")
-    fun getCTR(
+    fun getCtr(
         @RequestParam datasource: String,
         @RequestParam campaign: String
     ) = ResponseEntity.ok(warehouseService.getCTR(datasource, campaign))
