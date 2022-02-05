@@ -1,28 +1,27 @@
-package com.tcisoftware.sobiech.warehouse.rest
+package com.tcisoftware.sobiech.warehouse.infrastructure.data
 
 import com.opencsv.CSVParser
-import com.tcisoftware.sobiech.warehouse.infrastructure.DefaultCSVReader
 import com.tcisoftware.sobiech.warehouse.infrastructure.config.CSVReaderConfig
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.TestConstructor
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
-
-@ContextConfiguration(classes = [CSVReaderConfig::class])
 @ExtendWith(SpringExtension::class)
-class CSVReaderTest(
-    @Autowired val csvParser: CSVParser
+@ContextConfiguration(classes = [CSVReaderConfig::class])
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+class CSVReaderIntegrationTest(
+    csvParser: CSVParser
 ) {
 
-    private val warehouseCSVReader = DefaultCSVReader(csvParser, "/csv/test_data.csv")
+    private val warehouseCSVReader = DefaultCSVReader(csvParser, "/csv/data.csv")
 
     @Test
     fun `Should read all rows from CSV file`() {
         // given
         // when
-        val result = warehouseCSVReader.readAllRows()
+        val result = warehouseCSVReader.readAllRows(0)
 
         // then
     }
