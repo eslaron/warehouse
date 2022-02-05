@@ -1,17 +1,15 @@
 package com.tcisoftware.sobiech.warehouse.infrastructure.database
 
 import java.time.LocalDate
-import java.util.*
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name="ADVERTISEMENT")
 class AdvertisementEntity {
 
     @Id
-    private var id: UUID = UUID.randomUUID()
+    @GeneratedValue
+    var id: Long = 0
     lateinit var dataSource: String
     lateinit var campaign: String
     lateinit var daily: LocalDate

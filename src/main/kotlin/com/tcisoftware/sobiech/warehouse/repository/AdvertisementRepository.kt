@@ -12,6 +12,7 @@ interface AdvertisementRepository {
 
     fun save(row: CsvRow)
     fun saveAll(rows: List<CsvRow>)
+    fun countAllRows(): Long
 }
 
 @Component
@@ -24,7 +25,9 @@ class DefaultAdvertisementRepository(private val jpaRepository: JpaAdvertisement
     override fun saveAll(rows: List<CsvRow>) {
         rows.forEach { save(it) }
     }
+
+    override fun countAllRows(): Long = jpaRepository.count()
 }
 
 @Repository
-interface JpaAdvertisementRepository: CrudRepository<AdvertisementEntity, UUID>
+interface JpaAdvertisementRepository: CrudRepository<AdvertisementEntity, Long>
